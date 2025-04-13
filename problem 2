@@ -1,0 +1,11 @@
+select d.name as Department , e.salary as Employee , e.name as salary
+from department d join employee e 
+on e.departmentId = d.id 
+where e.salary = (
+    select max(salary)
+    from Employee 
+    where departmentID = e.departmentId
+)
+
+
+https://leetcode.com/problems/department-highest-salary/
