@@ -1,0 +1,47 @@
+select avg(price) from cars 
+
+  ----------------
+
+  select count(*)
+from cars 
+where leather_interior = true 
+and price < 1400 ; 
+
+----------------
+
+  select max(price)
+from cars 
+where manufacturer = 'TOYOTA'
+and prod_year = '2011'
+
+  -------------
+
+  select manufacturer 
+from cars 
+group by manufacturer 
+order by avg(price) desc
+
+  ------------------
+
+  SELECT ROUND(
+  SUM(CASE WHEN fuel_type = 'Petrol' THEN 1 ELSE 0 END) * 100.0
+  / COUNT(*), 2
+) AS petrol_jeep_percentage
+FROM cars
+WHERE category = 'Jeep';
+
+--------------------
+
+  select price , model
+from cars
+where price = (select min(price) from cars)
+
+    ----------------------
+
+SELECT ROUND(
+  100.0 * COUNT(*) FILTER (WHERE manufacturer = 'TOYOTA') / COUNT(*),
+  2
+) AS toyota_percentage
+FROM cars
+WHERE price > (SELECT AVG(price) FROM cars);
+
